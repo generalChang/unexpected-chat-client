@@ -1,4 +1,7 @@
-export const BASE_URL = `http://localhost:5000`;
+export const BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://unexpected-chat-server.herokuapp.com"
+    : `http://localhost:5000`;
 export const API_USER = `api/user`;
 
 export const ERR_MSG = "Error!! Try it later.";
