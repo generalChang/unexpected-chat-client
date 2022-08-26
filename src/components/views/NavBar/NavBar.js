@@ -34,7 +34,7 @@ function NavBar(props) {
     <div>
       <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand href="/">Perfecto</Navbar.Brand>
+          <Navbar.Brand href="/">Perfectos</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
