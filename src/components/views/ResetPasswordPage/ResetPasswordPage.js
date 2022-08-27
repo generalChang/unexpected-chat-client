@@ -30,15 +30,16 @@ function ResetPasswordPage(props) {
 
     let body = {
       email,
+      mode: process.env.NODE_ENV,
     };
     dispatch(resetPassword(body))
       .then((result) => {
         if (result.payload.success) {
-          message.success(success_msg("initialized password"));
+          message.success("Good. make sure to check your email.");
           setResetSuccess(true);
           return;
         } else {
-          message.warning(fail_msg("reset password"));
+          message.warning(fail_msg("email cetification"));
         }
       })
       .catch((err) => {
@@ -48,13 +49,13 @@ function ResetPasswordPage(props) {
   return (
     <div style={{ maxWidth: "350px", margin: "4rem auto" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Title level={2}>Password Reset</Title>
+        <Title level={2}>Password Reset By Email</Title>
       </div>
       <div>
         {resetSuccess ? (
           <Alert
-            message="We reseted your password!!"
-            description="Check your email and login using that password you received"
+            message="Check your email"
+            description="Check your email and you will be able to get new temporary password"
             type="success"
             showIcon
             closable

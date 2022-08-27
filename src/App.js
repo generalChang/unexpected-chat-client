@@ -4,6 +4,7 @@ import EmailCertificationPage from "./components/views/EmailCertificationPage/Em
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import NavBar from "./components/views/NavBar/NavBar";
+import NewPasswordPage from "./components/views/NewPasswordPage/NewPasswordPage";
 
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import ResetPasswordPage from "./components/views/ResetPasswordPage/ResetPasswordPage";
@@ -34,6 +35,11 @@ function App() {
             path="/update/password"
             exact
             component={Auth(UpdatePasswordPage, true)}
+          />
+          <Route
+            path="/tmp/password/:id"
+            exact
+            component={Auth(NewPasswordPage, false)}
           />
         </Switch>
       </div>

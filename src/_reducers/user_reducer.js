@@ -4,6 +4,7 @@ import {
   EMAIL_CERTIFICATION,
   LOGIN_USER,
   RESET_PASSWORD,
+  SET_TMP_PASSWORD,
   UPDATE_PASSWORD,
   USER_LOGOUT,
   USER_REGISTER,
@@ -30,6 +31,9 @@ export default function (state = {}, action) {
       return { ...state, ...action.payload };
       break;
     case UPDATE_PASSWORD:
+      return { ...state, ...action.payload };
+      break;
+    case SET_TMP_PASSWORD:
       return { ...state, ...action.payload };
       break;
     default:

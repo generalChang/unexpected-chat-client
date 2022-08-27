@@ -47,7 +47,7 @@ function UpdatePasswordPage(props) {
   return (
     <div style={{ maxWidth: "350px", margin: "4rem auto" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Title level={2}>Password Reset</Title>
+        <Title level={2}>Password Update Form</Title>
       </div>
       <div>
         <Alert
