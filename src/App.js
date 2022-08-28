@@ -1,10 +1,12 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import EmailCertificationPage from "./components/views/EmailCertificationPage/EmailCertificationPage";
+import GroupChatPage from "./components/views/GroupChatPage/GroupChatPage";
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import NavBar from "./components/views/NavBar/NavBar";
 import NewPasswordPage from "./components/views/NewPasswordPage/NewPasswordPage";
+import RandomChatPage from "./components/views/RandomChatPage/RandomChatPage";
 
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
 import ResetPasswordPage from "./components/views/ResetPasswordPage/ResetPasswordPage";
@@ -40,6 +42,18 @@ function App() {
             path="/tmp/password/:id"
             exact
             component={Auth(NewPasswordPage, false)}
+          />
+
+          <Route
+            path="/group/chat"
+            exact
+            component={Auth(GroupChatPage, true)}
+          />
+
+          <Route
+            path="/random/chat"
+            exact
+            component={Auth(RandomChatPage, true)}
           />
         </Switch>
       </div>

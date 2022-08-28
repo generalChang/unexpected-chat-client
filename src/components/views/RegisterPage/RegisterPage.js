@@ -20,6 +20,7 @@ import {
 import { Gender } from "../../../Config/gender";
 import { useDispatch } from "react-redux";
 import { register } from "../../../_actions/user_actions";
+import moment from "moment";
 const { Title } = Typography;
 
 function RegisterPage(props) {
@@ -59,6 +60,7 @@ function RegisterPage(props) {
       username,
       age,
       gender,
+      image: `http://gravatar.com/avatar/${moment().unix()}?d=identicon`,
     };
 
     dispatch(register(body))
