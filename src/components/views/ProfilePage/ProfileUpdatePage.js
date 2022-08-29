@@ -82,6 +82,7 @@ function ProfileUpdatePage(props) {
 
   useEffect(() => {
     if (user && user.userData) {
+      setImage(user.userData.imageUpdated ? user.userData.image : "");
       setUsername(user.userData.username);
       setGender(user.userData.gender);
       setAge(user.userData.age);
