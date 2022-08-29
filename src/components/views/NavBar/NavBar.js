@@ -1,4 +1,4 @@
-import { HomeFilled } from "@ant-design/icons";
+import { HomeFilled, LogoutOutlined, ProfileOutlined } from "@ant-design/icons";
 import { message } from "antd";
 import React from "react";
 import Container from "react-bootstrap/Container";
@@ -50,14 +50,19 @@ function NavBar(props) {
             )}
             {user && user.userData && user.userData.isAuth && (
               <Nav>
-                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+                <Nav.Link href="/user/profile">
+                  <IconBtn title="Profile" IconComponent={ProfileOutlined} />
+                </Nav.Link>
+                <Nav.Link onClick={handleLogout}>
+                  <IconBtn title="Logout" IconComponent={LogoutOutlined} />
+                </Nav.Link>
               </Nav>
             )}
-            <Nav>
+            {/* <Nav>
               <NavDropdown title="Etc" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               </NavDropdown>
-            </Nav>
+            </Nav> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

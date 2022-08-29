@@ -10,7 +10,9 @@ import {
   Form,
   Avatar,
   Comment,
+  Divider,
 } from "antd";
+import { RANDOM_CHAT } from "../Config/config";
 function ChatRoom(props) {
   const [msg, setMsg] = useState("");
   const scrollRef = useRef();
@@ -57,40 +59,95 @@ function ChatRoom(props) {
     e.preventDefault();
     props.leaveRoom();
   };
+
+  const handleStartSearchingSomeone = (e) => {
+    e.preventDefault();
+    props.startSearchSomeone();
+  };
   return (
     <Row gutter={[32, 32]}>
       <Col lg={18} xs={24}>
         <div ref={scrollRef} style={{ overflowY: "scroll", height: "500px" }}>
           {renderMessages()}
         </div>
-        <Form style={{ display: "flex" }}>
-          <Input
-            type="text"
-            onChange={onMsgChange}
-            value={msg}
-            size="large"
-            placeholder="input message..."
-          />
-          <Button
-            size="large"
-            type="danger"
-            onClick={handleSendMessage}
-            htmlType="submit"
-          >
-            Send
-          </Button>
-        </Form>
+        {props.type !== RANDOM_CHAT && (
+          <Form style={{ display: "flex" }}>
+            <Input
+              type="text"
+              onChange={onMsgChange}
+              value={msg}
+              size="large"
+              placeholder="input message..."
+            />
+            <Button
+              size="large"
+              type="danger"
+              onClick={handleSendMessage}
+              htmlType="submit"
+            >
+              Send
+            </Button>
+          </Form>
+        )}
+        {props.type === RANDOM_CHAT && (
+          <Form style={{ display: "flex" }}>
+            <Input
+              type="text"
+              onChange={onMsgChange}
+              value={msg}
+              size="large"
+              placeholder="input message..."
+              disabled={props.roomId === null}
+            />
+            <Button
+              size="large"
+              type="danger"
+              onClick={handleSendMessage}
+              htmlType="submit"
+              disabled={props.roomId === null}
+            >
+              Send
+            </Button>
+          </Form>
+        )}
       </Col>
       <Col lg={6} xs={24}>
-        <Button
-          type="default"
-          danger
-          size="large"
-          shape="round"
-          onClick={handleLeaveRoom}
-        >
-          Exit
-        </Button>
+        {props.type !== RANDOM_CHAT && (
+          <Button
+            type="default"
+            danger
+            size="large"
+            shape="round"
+            onClick={handleLeaveRoom}
+          >
+            Exit
+          </Button>
+        )}
+        {props.type === RANDOM_CHAT && (
+          <div>
+            <Button
+              type="default"
+              danger
+              size="large"
+              shape="round"
+              onClick={handleStartSearchingSomeone}
+              disabled={props.roomId !== null}
+            >
+              Start
+            </Button>
+            <Divider />
+            <Button
+              type="default"
+              danger
+              size="large"
+              shape="round"
+              disabled={props.roomId === null}
+              onClick={handleLeaveRoom}
+            >
+              Exit
+            </Button>
+          </div>
+        )}
       </Col>
     </Row>
   );

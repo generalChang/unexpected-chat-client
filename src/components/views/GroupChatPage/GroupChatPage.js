@@ -88,7 +88,9 @@ function GroupChatPage(props) {
     let body = {
       roomId,
       username: user.userData.username,
-      image: user.userData.image,
+      image: user.userData.imageUpdated
+        ? `${BASE_URL}/${user.userData.image}`
+        : user.userData.image,
       msg: msg_content,
     };
     socket.current.emit("send_msg", body, (obj) => {
@@ -104,7 +106,9 @@ function GroupChatPage(props) {
     let body = {
       roomId,
       username: user.userData.username,
-      image: user.userData.image,
+      image: user.userData.imageUpdated
+        ? `${BASE_URL}/${user.userData.image}`
+        : user.userData.image,
       roomtype: GROUP_CHAT,
     };
 
@@ -114,7 +118,10 @@ function GroupChatPage(props) {
       setRoomname(roomIdParsed.roomname);
       addMessage({
         username: user.userData.username,
-        image: user.userData.image,
+        image: user.userData.imageUpdated
+          ? `${BASE_URL}/${user.userData.image}`
+          : user.userData.image,
+
         msg: `${user.userData.username} joined this chatroom!`,
       });
     });
@@ -124,7 +131,9 @@ function GroupChatPage(props) {
     let body = {
       roomId,
       username: user.userData.username,
-      image: user.userData.image,
+      image: user.userData.imageUpdated
+        ? `${BASE_URL}/${user.userData.image}`
+        : user.userData.image,
       roomtype: GROUP_CHAT,
     };
 
@@ -161,7 +170,9 @@ function GroupChatPage(props) {
     let body = {
       roomname: value,
       username: user.userData.username,
-      image: user.userData.image,
+      image: user.userData.imageUpdated
+        ? `${BASE_URL}/${user.userData.image}`
+        : user.userData.image,
       roomtype: GROUP_CHAT,
     };
 
@@ -172,7 +183,9 @@ function GroupChatPage(props) {
       setRoomname(roomid.roomname);
       addMessage({
         username: user.userData.username,
-        image: user.userData.image,
+        image: user.userData.imageUpdated
+          ? `${BASE_URL}/${user.userData.image}`
+          : user.userData.image,
         msg: `${user.userData.username} created this chatroom!`,
       });
     });
@@ -185,6 +198,7 @@ function GroupChatPage(props) {
         {!roomId && (
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Title level={3}>
+              <WechatOutlined style={{ fontSize: "2.5rem" }} />
               <span style={{ marginLeft: "0.5rem" }}>Group Chat Rooms</span>
             </Title>
             <Button

@@ -30,7 +30,7 @@ export const chatCategory = [
     img: `${BASE_URL}/uploads/random-chat.png`,
     name: "Random Chat with Stranger",
     desc: "낯선사람과 1대1로 매칭되어 채팅할 수 있어요.",
-    url: "",
+    url: "/random/chat",
     type: "RANDOM_CHAT",
   },
 ];

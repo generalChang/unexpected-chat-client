@@ -1,11 +1,14 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import EmailCertificationPage from "./components/views/EmailCertificationPage/EmailCertificationPage";
+import Footer from "./components/views/Footer/Footer";
 import GroupChatPage from "./components/views/GroupChatPage/GroupChatPage";
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import LoginPage from "./components/views/LoginPage/LoginPage";
 import NavBar from "./components/views/NavBar/NavBar";
 import NewPasswordPage from "./components/views/NewPasswordPage/NewPasswordPage";
+import ProfilePage from "./components/views/ProfilePage/ProfilePage";
+import ProfileUpdatePage from "./components/views/ProfilePage/ProfileUpdatePage";
 import RandomChatPage from "./components/views/RandomChatPage/RandomChatPage";
 
 import RegisterPage from "./components/views/RegisterPage/RegisterPage";
@@ -55,8 +58,21 @@ function App() {
             exact
             component={Auth(RandomChatPage, true)}
           />
+
+          <Route
+            path="/user/profile"
+            exact
+            component={Auth(ProfilePage, true)}
+          />
+
+          <Route
+            path="/user/update"
+            exact
+            component={Auth(ProfileUpdatePage, true)}
+          />
         </Switch>
       </div>
+      <Footer />
     </div>
   );
 }
