@@ -10,7 +10,7 @@ function LandingPage(props) {
   const renderChatCards = () => {
     return chatCategory.map((category, index) => {
       return (
-        <Col lg={12} xs={24}>
+        <Col lg={8} md={12} xs={24} key={index}>
           <a href={category.url}>
             <Card
               hoverable

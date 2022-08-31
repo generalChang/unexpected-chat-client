@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import CallChatPage from "./components/views/CallChatPage/CallChatPage";
 import EmailCertificationPage from "./components/views/EmailCertificationPage/EmailCertificationPage";
 import Footer from "./components/views/Footer/Footer";
 import GroupChatPage from "./components/views/GroupChatPage/GroupChatPage";
@@ -69,6 +70,12 @@ function App() {
             path="/user/update"
             exact
             component={Auth(ProfileUpdatePage, true)}
+          />
+
+          <Route
+            path="/video/chat"
+            exact
+            component={Auth(CallChatPage, true)}
           />
         </Switch>
       </div>
