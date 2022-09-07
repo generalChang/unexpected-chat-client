@@ -1,4 +1,9 @@
-import { HomeFilled, LogoutOutlined, ProfileOutlined } from "@ant-design/icons";
+import {
+  HomeFilled,
+  LogoutOutlined,
+  ProfileOutlined,
+  TeamOutlined,
+} from "@ant-design/icons";
 import { message } from "antd";
 import React from "react";
 import Container from "react-bootstrap/Container";
@@ -50,6 +55,9 @@ function NavBar(props) {
             )}
             {user && user.userData && user.userData.isAuth && (
               <Nav>
+                <Nav.Link href="/mychat/page">
+                  <IconBtn title="MyChat" IconComponent={TeamOutlined} />
+                </Nav.Link>
                 <Nav.Link href="/user/profile">
                   <IconBtn title="Profile" IconComponent={ProfileOutlined} />
                 </Nav.Link>

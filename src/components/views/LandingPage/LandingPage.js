@@ -1,5 +1,6 @@
 import { WechatOutlined } from "@ant-design/icons";
 import { Card, Typography, Col, Row } from "antd";
+import QueueAnim from "rc-queue-anim";
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { chatCategory } from "../../../Config/config";
@@ -10,7 +11,7 @@ function LandingPage(props) {
   const renderChatCards = () => {
     return chatCategory.map((category, index) => {
       return (
-        <Col lg={8} md={12} xs={24} key={index}>
+        <Col lg={6} md={12} xs={24} key={index}>
           <a href={category.url}>
             <Card
               hoverable
@@ -38,6 +39,7 @@ function LandingPage(props) {
           <span style={{ marginLeft: "0.5rem" }}>Chat Category</span>
         </Title>
       </div>
+
       <div style={{ margin: "2rem auto" }}>
         <Row gutter={[32, 32]}>{renderChatCards()}</Row>
       </div>

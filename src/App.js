@@ -4,8 +4,11 @@ import CallChatPage from "./components/views/CallChatPage/CallChatPage";
 import EmailCertificationPage from "./components/views/EmailCertificationPage/EmailCertificationPage";
 import Footer from "./components/views/Footer/Footer";
 import GroupChatPage from "./components/views/GroupChatPage/GroupChatPage";
+import HistoryChatPage from "./components/views/HistoryChatPage/HistoryChatPage";
+import HistoryChatRoomPage from "./components/views/HistoryChatPage/HistoryChatRoomPage";
 import LandingPage from "./components/views/LandingPage/LandingPage";
 import LoginPage from "./components/views/LoginPage/LoginPage";
+import MyChatPage from "./components/views/MyChatPage/MyChatPage";
 import NavBar from "./components/views/NavBar/NavBar";
 import NewPasswordPage from "./components/views/NewPasswordPage/NewPasswordPage";
 import ProfilePage from "./components/views/ProfilePage/ProfilePage";
@@ -77,6 +80,20 @@ function App() {
             exact
             component={Auth(CallChatPage, true)}
           />
+
+          <Route
+            path="/historyChat"
+            exact
+            component={Auth(HistoryChatPage, true)}
+          />
+
+          <Route
+            path="/historyChatRoom/:roomId/:roomname"
+            exact
+            component={Auth(HistoryChatRoomPage, true)}
+          />
+
+          <Route path="/mychat/page" exact component={Auth(MyChatPage, true)} />
         </Switch>
       </div>
       <Footer />
