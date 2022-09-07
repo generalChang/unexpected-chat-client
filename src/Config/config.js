@@ -46,7 +46,7 @@ export const chatCategory = [
   },
   {
     img: `${BASE_URL}/uploads/history-chat.png`,
-    name: "Group chat",
+    name: "History Chat",
     desc: "누구나 방을 새롭게 만들어 여러사람과 채팅할 수 있어요. 그리고 채팅내역도 남아요",
     url: "/historyChat",
     type: "HISTORY_CHAT",
