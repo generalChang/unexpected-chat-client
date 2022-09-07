@@ -89,6 +89,7 @@ function HistoryChatRoom(props) {
               src={makeImagePath(joiner.image, joiner.imageUpdated)}
               width="60px"
               height="60px"
+              style={{ objectFit: "contain" }}
             />
             <div
               style={{
