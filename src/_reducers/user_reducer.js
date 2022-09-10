@@ -2,6 +2,7 @@ import React from "react";
 import {
   AUTH_USER,
   EMAIL_CERTIFICATION,
+  GET_USER,
   LOGIN_USER,
   RESET_PASSWORD,
   SET_TMP_PASSWORD,
@@ -36,6 +37,8 @@ export default function (state = {}, action) {
     case SET_TMP_PASSWORD:
       return { ...state, ...action.payload };
       break;
+    case GET_USER:
+      return {...state, }
     default:
       return { ...state };
       break;

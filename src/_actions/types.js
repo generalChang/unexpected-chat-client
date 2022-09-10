@@ -6,3 +6,4 @@ export const EMAIL_CERTIFICATION = "email_certification";
 export const RESET_PASSWORD = "reset_password";
 export const SET_TMP_PASSWORD = "set_tmp_password";
 export const UPDATE_PASSWORD = "update_password";
+export const GET_USER = "GET_USER";

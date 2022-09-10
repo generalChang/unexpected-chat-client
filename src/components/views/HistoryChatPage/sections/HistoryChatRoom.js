@@ -50,7 +50,7 @@ function HistoryChatRoom(props) {
           <Comment
             key={index}
             author={
-              <a>
+              <a href={`/user/profile/${chatting.userId._id}`}>
                 {chatting.userId.username}
                 {props.owner &&
                   props.owner === chatting.userId._id &&
@@ -58,13 +58,15 @@ function HistoryChatRoom(props) {
               </a>
             }
             avatar={
-              <Avatar
-                src={makeImagePath(
-                  chatting.userId.image,
-                  chatting.userId.imageUpdated
-                )}
-                alt={chatting.userId.username}
-              />
+              <a href={`/user/profile/${chatting.userId._id}`}>
+                <Avatar
+                  src={makeImagePath(
+                    chatting.userId.image,
+                    chatting.userId.imageUpdated
+                  )}
+                  alt={chatting.userId.username}
+                />
+              </a>
             }
             content={<p>{chatting.message}</p>}
             datetime={
@@ -84,39 +86,44 @@ function HistoryChatRoom(props) {
     if (props.joiners) {
       return props.joiners.map((joiner, index) => {
         return (
-          <div style={{ padding: "10px 0px", display: "flex" }}>
-            <img
-              src={makeImagePath(joiner.image, joiner.imageUpdated)}
-              width="60px"
-              height="60px"
-              style={{ objectFit: "contain" }}
-            />
-            <div
-              style={{
-                marginLeft: "10px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <span
+          <a
+            href={`/user/profile/${joiner._id}`}
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            <div style={{ padding: "10px 0px", display: "flex" }}>
+              <img
+                src={makeImagePath(joiner.image, joiner.imageUpdated)}
+                width="60px"
+                height="60px"
+                style={{ objectFit: "contain" }}
+              />
+              <div
                 style={{
-                  fontSize: "15px",
-                  fontWeight: 600,
-                  whiteSpace: "nowrap",
-                  textOverflow: "ellipsis",
-                  overflow: "hidden",
+                  marginLeft: "10px",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                {joiner.username}
-                {props.owner && props.owner === joiner._id && "(Owner)"}
-              </span>
-              <span style={{ fontSize: "13px", fontWeight: "500" }}>
-                Age : {joiner.age}
-              </span>
+                <span
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: 600,
+                    whiteSpace: "nowrap",
+                    textOverflow: "ellipsis",
+                    overflow: "hidden",
+                  }}
+                >
+                  {joiner.username}
+                  {props.owner && props.owner === joiner._id && "(Owner)"}
+                </span>
+                <span style={{ fontSize: "13px", fontWeight: "500" }}>
+                  Age : {joiner.age}
+                </span>
 
-              <span>Gender: {getGender(joiner.gender)}</span>
+                <span>Gender: {getGender(joiner.gender)}</span>
+              </div>
             </div>
-          </div>
+          </a>
         );
       });
     }

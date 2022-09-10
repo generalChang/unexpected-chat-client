@@ -10,6 +10,7 @@ import {
   RESET_PASSWORD,
   UPDATE_PASSWORD,
   SET_TMP_PASSWORD,
+  GET_USER,
 } from "./types";
 
 export function login(body) {
@@ -113,6 +114,19 @@ export function setTmpPassword(body) {
 
   return {
     type: SET_TMP_PASSWORD,
+    payload: request,
+  };
+}
+
+export function getUser(body) {
+  const request = axios
+    .post(`${BASE_URL}/${API_USER}/user`, body, {
+      withCredentials: true,
+    })
+    .then((result) => result.data);
+
+  return {
+    type: GET_USER,
     payload: request,
   };
 }

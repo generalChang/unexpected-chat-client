@@ -64,7 +64,7 @@ function App() {
           />
 
           <Route
-            path="/user/profile"
+            path="/user/profile/:id"
             exact
             component={Auth(ProfilePage, true)}
           />

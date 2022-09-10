@@ -4,7 +4,7 @@ export const BASE_URL =
     : `http://localhost:5000`;
 export const API_USER = `api/user`;
 export const API_CHAT = "api/chat";
-
+export const API_FRIEND = "api/friend";
 export const ERR_MSG = "Error!! Try it later.";
 export const fail_msg = (msg) => {
   return `Failed to ${msg}... sorry..`;

@@ -4,21 +4,34 @@ import {
   ProfileOutlined,
   TeamOutlined,
 } from "@ant-design/icons";
-import { message } from "antd";
+import { message, Badge } from "antd";
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { ERR_MSG, fail_msg, success_msg } from "../../../Config/config";
+import {
+  API_CHAT,
+  BASE_URL,
+  ERR_MSG,
+  fail_msg,
+  success_msg,
+} from "../../../Config/config";
 import IconBtn from "../../../utils/IconBtn";
 import { logout } from "../../../_actions/user_actions";
 
 function NavBar(props) {
   const user = useSelector((state) => state.user);
+  const [allUnReadChat, setAllUnReadChat] = useState(0);
   const dispatch = useDispatch();
+  let getUnreadFunc = useRef();
+  let getUnreadInterval = useRef();
   const handleLogout = () => {
     dispatch(logout())
       .then((result) => {
@@ -34,6 +47,54 @@ function NavBar(props) {
       .catch((err) => {
         message.error(ERR_MSG);
       });
+  };
+  useEffect(() => {
+    if (user.userData && user.userData.isAuth) {
+      getUnreadFunc.current = () => {
+        getChatRooms();
+      };
+
+      getUnreadInterval.current = setInterval(getUnreadFunc.current, 1000);
+      // getChatRooms();
+    }
+  }, [user.userData]);
+
+  const getChatUnRead = async (rooms) => {
+    let allUnread = 0;
+    for (const chatRoom of rooms) {
+      let body = {
+        roomId: chatRoom._id,
+      };
+      await axios
+        .post(`${BASE_URL}/${API_CHAT}/unreadChat`, body, {
+          withCredentials: true,
+        })
+        .then((result) => {
+          if (result.data.success) {
+            allUnread += result.data.unReadCount;
+          } else {
+          }
+        });
+    }
+    setAllUnReadChat(allUnread);
+  };
+  const getChatRooms = () => {
+    if (user.userData) {
+      let body = {
+        userId: user.userData._id,
+      };
+
+      axios
+        .post(`${BASE_URL}/${API_CHAT}/chatroomsByUser`, body)
+        .then((result) => {
+          if (result.data.success) {
+            getChatUnRead(result.data.chatRooms);
+          }
+        })
+        .catch((err) => {
+          message.error(ERR_MSG);
+        });
+    }
   };
   return (
     <div>
@@ -55,10 +116,14 @@ function NavBar(props) {
             )}
             {user && user.userData && user.userData.isAuth && (
               <Nav>
-                <Nav.Link href="/mychat/page">
+                <Nav.Link href="/mychat/page" style={{ position: "relative" }}>
+                  <div style={{ position: "absolute", top: -7, left: 0 }}>
+                    <Badge count={allUnReadChat} size="small" />
+                  </div>
+
                   <IconBtn title="MyChat" IconComponent={TeamOutlined} />
                 </Nav.Link>
-                <Nav.Link href="/user/profile">
+                <Nav.Link href={`/user/profile/${user.userData._id}`}>
                   <IconBtn title="Profile" IconComponent={ProfileOutlined} />
                 </Nav.Link>
                 <Nav.Link onClick={handleLogout}>

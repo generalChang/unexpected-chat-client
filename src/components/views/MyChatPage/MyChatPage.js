@@ -14,10 +14,34 @@ const { Search } = Input;
 function MyChatPage(props) {
   const user = useSelector((state) => state.user);
   const [chatRooms, setChatRooms] = useState([]);
+
   useEffect(() => {
     getChatRooms();
   }, [user.userData]);
 
+  const getChatUnRead = async (rooms) => {
+    let newChatRooms = [];
+    for (const chatRoom of rooms) {
+      let body = {
+        roomId: chatRoom._id,
+      };
+      await axios
+        .post(`${BASE_URL}/${API_CHAT}/unreadChat`, body, {
+          withCredentials: true,
+        })
+        .then((result) => {
+          if (result.data.success) {
+            newChatRooms.push({
+              ...chatRoom,
+              unReadCount: result.data.unReadCount,
+            });
+          } else {
+          }
+        });
+    }
+
+    setChatRooms(newChatRooms);
+  };
   const getChatRooms = () => {
     if (user.userData) {
       let body = {
@@ -28,7 +52,7 @@ function MyChatPage(props) {
         .post(`${BASE_URL}/${API_CHAT}/chatroomsByUser`, body)
         .then((result) => {
           if (result.data.success) {
-            setChatRooms(result.data.chatRooms);
+            getChatUnRead(result.data.chatRooms);
           }
         })
         .catch((err) => {
